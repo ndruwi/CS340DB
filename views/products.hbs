@@ -1,0 +1,103 @@
+{{!-- Create a table --}}
+<!DOCTYPE html>
+<head>
+        <title>Products</title>
+    </head>
+    <body>
+        <header>
+            <h1>Products</h1>
+            <nav>
+                <ul>
+                    <li><a class="active" href='/employees'>Employees</a></li>
+                    <li><a href="/customers">Customers</a></li>
+                    <li><a href="/suppliers">Suppliers</a></li>
+                    <li><a href="/products">Products</a></li>
+                    <li><a href="/orders">Orders</a></li>
+                </ul>
+            </nav>
+        </header>
+
+
+
+<table id="products-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.productID}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.category}}</td>
+            <td>{{this.price}}</td>
+            <td>{{this.quantity}}</td>
+            <td><button onclick="deleteProduct({{this.productID}})">Delete</button></td>
+
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_product.js"></script>
+{{!-- Form to add a record to the table using standard HTML forms --}}
+<h2>Add new product</h2>
+<p>To add a new product, please enter the information below and click `Submit`!</p>
+<form id="add-product-form" method="POST" action="/add-product-form">
+    <label for="input-productName">Product Name: </label>
+    <input type="text" name="input-productName" id="input-productName">
+    
+    <label for="input-category">Category: </label>
+    <input type="text" name="input-category" id="input-category">
+
+
+    <label for="input-price">Price: </label>
+    <input type="number" name="input-price" id="input-price">
+
+    <label for="input-quantity">Quantity: </label>
+    <input type="number" name="input-quantity" id="input-quantity">
+
+
+    <input type="submit">
+</form> 
+
+<h2>Update Product</h2>
+<p>To update a specific products detail, select from dropdown.</p>
+<form id="update-product-form-ajax">
+
+    <label for="input-productName">Product name: </label>
+    <select name="input-productName" id="mySelect">
+        <option value="test">Select a Product</option>
+        {{#each data}}
+        <option value="{{this.productID}}">{{this.name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-category">Category: </label>
+    <input type="text" name="input-category" id="input-category">
+
+
+    <label for="input-price">Price: </label>
+    <input type="number" name="input-price" id="input-price">
+
+    <label for="input-quantity">Quantity: </label>
+    <input type="number" name="input-quantity" id="input-quantity">
+    <input type="submit">
+
+</form>
+
+<script src="./js/update_product.js"></script>

@@ -1,0 +1,86 @@
+{{!-- Create a table --}}
+<!DOCTYPE html>
+<head>
+        <title>Suppliers</title>
+    </head>
+    <body>
+        <header>
+            <h1>Suppliers</h1>
+            <nav>
+                <ul>
+                    <li><a class="active" href='/employees'>Employees</a></li>
+                    <li><a href="/customers">Customers</a></li>
+                    <li><a href="/suppliers">Suppliers</a></li>
+                    <li><a href="/products">Products</a></li>
+                    <li><a href="/orders">Orders</a></li>
+                </ul>
+            </nav>
+        </header>
+
+
+
+<table id="suppliers-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.supplierID}}</td>
+            <td>{{this.supplierName}}</td>
+            <td>{{this.location}}</td>
+            <td><button onclick="deleteSupplier({{this.supplierID}})">Delete</button></td>
+
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_supplier.js"></script>
+{{!-- Form to add a record to the table using standard HTML forms --}}
+<h2>Add new supplier</h2>
+<p>To add a new supplier, please enter their information below and click `Submit`!</p>
+<form id="add-supplier-form" method="POST" action="/add-supplier-form">
+    <label for="input-supplierName">Supplier Name: </label>
+    <input type="text" name="input-supplierName" id="input-supplierName">
+    
+    <label for="input-location">Location: </label>
+    <input type="text" name="input-location" id="input-location">
+
+    <input type="submit">
+</form> 
+
+<h2>Updating Supplier</h2>
+<p>To update a specific suppliers detail, select from dropdown.</p>
+<form id="update-supplier-form-ajax">
+
+    <label for="input-supplierName">Supplier name: </label>
+    <select name="input-supplierName" id="mySelect">
+        <option value="test">Select a Supplier</option>
+        {{#each data}}
+        <option value="{{this.supplierID}}">{{this.supplerName}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-location">Location: </label>
+    <input type="text" name="input-location" id="input-location">
+    <input type="submit">
+
+</form>
+
+<script src="./js/update_supplier.js"></script>
