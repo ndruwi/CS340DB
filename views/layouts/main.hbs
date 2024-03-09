@@ -1,13 +1,35 @@
-
+<!-- main.hbs-->
+<!-- 
+    Citation for the following function:
+    Date: 3/7/2024
+    Based on code from the OSU CS340 nodejs-starter-app GitHub page, Step 4.
+    Changed the title and body contents to meet the project requirements.
+    Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+-->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Example App</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sporting Goods Store</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
 </head>
 <body>
+    <nav>
+        <a href="/index">Home</a>
+        <a href="/customers">Customers</a>
+        <a href="/employees">Employees</a>
+        <a href="/orders">Order Info</a>
+        <a href="/products">Product Info</a>
+        <a href="/suppliers">Suppliers/Vendors</a>
+        <a href="/purchasedorders">Processed Orders</a>
+    </nav>
+    <header><h1>Sport Shop</h1></header>
+    <main>
 
-    {{{body}}}
+        {{{body}}}
 
 </body>
 </html>
