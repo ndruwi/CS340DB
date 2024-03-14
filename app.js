@@ -26,6 +26,11 @@ app.set('view engine', '.hbs');                 // Tell express to use the handl
     ROUTES
 */
 
+app.get('/index', function(req, res, next)
+{
+    res.status(200).render('index');
+    });
+
 
 app.get('/customers', function(req, res)
 {
