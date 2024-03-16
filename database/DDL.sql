@@ -35,7 +35,7 @@ CREATE OR REPLACE TABLE Products (
 );
 
 -- PurchaseOrders table
-CREATE TOR REPLACE TABLE PurchaseOrders (
+CREATE OR REPLACE TABLE PurchaseOrders (
     purchaseID INT AUTO_INCREMENT PRIMARY KEY,
     supplierID INT NOT NULL,
     purchaseStatus VARCHAR(255) NOT NULL,
