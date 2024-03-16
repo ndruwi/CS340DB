@@ -292,3 +292,11 @@ app.delete('/delete-employee-ajax', function(req,res,next){
 app.listen(PORT, function(){
     console.log('Express started on http://localhost:' + PORT + '; press Ctrl-C to terminate.')
 });
+
+app.get('/orders', function(req, res)
+{
+    let query1 = `SELECT * FROM Orders;`
+    db.pool.query(query1, function(error, rows, fields){
+        res.render('orders', {data: rows});
+    })
+});
