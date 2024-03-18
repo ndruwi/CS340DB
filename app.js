@@ -300,3 +300,73 @@ app.get('/orders', function(req, res)
         res.render('orders', {data: rows});
     })
 });
+
+app.post('/add-order-form', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Orders (orderType, orderStatus, orderDate, total) VALUES ('${data['input-orderType']}', '${data['input-orderStatus']}', '${data['input-orderdate']}', '${data['input-status']}')`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/orders');
+        }
+    })
+});
+
+app.delete('/delete-order-ajax', function(req,res,next){
+    let data = req.body;
+    let supplierID = parseInt(data.id);
+    let delete_order = `DELETE FROM Orders WHERE orderID = ?`;
+  
+  
+          // Run the 1st query
+            db.pool.query(delete_order, [orderID], function(error, rows, fields){
+            if (error) {
+
+                // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                console.log(error);
+                res.sendStatus(400);
+            }
+            else {
+                res.sendStatus(204);
+                
+        }
+        
+  })
+});
+app.get('/purchaseorderproducts', function(req, res)
+{
+    let query1 = `SELECT * FROM PurchaseOrderProducts;`
+    db.pool.query(query1, function(error, rows, fields){
+        res.render('purchaseorderproducts', {data: rows});
+    })
+});
+
+app.get('/purchaseorders', function(req, res)
+{
+    let query1 = `SELECT * FROM PurchaseOrders;`
+    db.pool.query(query1, function(error, rows, fields){
+        res.render('purchaseorders', {data: rows});
+    })
+});
+
+app.get('/orderproducts', function(req, res)
+{
+    let query1 = `SELECT * FROM OrderProducts;`
+    db.pool.query(query1, function(error, rows, fields){
+        res.render('orderproducts', {data: rows});
+    })
+});
