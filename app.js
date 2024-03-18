@@ -328,7 +328,7 @@ app.post('/add-order-form', function(req, res){
 
 app.delete('/delete-order-ajax', function(req,res,next){
     let data = req.body;
-    let supplierID = parseInt(data.id);
+    let orderID = parseInt(data.id);
     let delete_order = `DELETE FROM Orders WHERE orderID = ?`;
   
   
