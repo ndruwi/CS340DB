@@ -54,3 +54,40 @@
         {{/each}}
     </tbody>
 </table>
+
+<script src="./js/delete_purchaseorderproducts.js"></script>
+{{!-- Form to add a record to the table using standard HTML forms --}}
+<h2>Add new </h2>
+<p>To add a new order, please enter the information below and click `Submit`!</p>
+<form id="add-purchaseorders-form" method="POST" action="/add-purchaseorders-form">
+    <label for="input-purchaseStatus">Purchase Status: </label>
+    <input type="text" name="input-purchase status" id="input-purchasestatus">
+    
+    <label for="input-purchaseDate">Unit Price: </label>
+    <input type="text" name="input-purchase status" id="input-purchaseDate">
+
+    <input type="submit">
+</form> 
+
+<h2>Update</h2>
+<p>To update, select from dropdown.</p>
+<form id="update-purchaseorders-form-ajax">
+
+    <label for="input-purchaseStatus">Purchase Status: </label>
+    <select name="input-purchaseStatus" id="mySelect">
+        <option value="test">Select Order</option>
+        {{#each data}}
+        <option value="{{this.productID}}">{{this.purchaseStatus}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-purchaseDate">Purchase Date: </label>
+    <input type="text" name="input-purchasedate" id="input-purchaseDate">
+
+    <input type="submit">
+
+</form>
+
+<script src="./js/update_purchaseorders.js"></script>
+
+
