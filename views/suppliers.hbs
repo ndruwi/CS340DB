@@ -2,23 +2,12 @@
 <!DOCTYPE html>
 <head>
         <title>Suppliers</title>
+        <link rel="stylesheet" href="/css/styles.css">
+    </head>
     </head>
     <body>
         <header>
             <h1>Suppliers</h1>
-            <nav>
-                <ul>
-                    <li><a href="/index">Home Page</a></li>
-                    <li><a href="/customers">Customers</a></li>
-                    <li><a href="/employees">Employees</a></li>
-                    <li><a class="active" href='/suppliers'>Suppliers</a></li>
-                    <li><a href="/products">Products</a></li>
-                    <li><a href="/orders">Orders</a></li>
-                    <li><a href="/orderproducts">Order Products</a></li>
-                    <li><a href="/purchaseorderproducts">Purchase Order Products</a></li>
-                    <li><a href="/purchaseorders">Purchase Orders</a></li>
-                </ul>
-            </nav>
         </header>
 
 
@@ -36,6 +25,7 @@
                 {{@key}}
             </th>
             {{/each}}
+            <th>edit</th>
             <th>delete</th>
         </tr>
     </thead>
@@ -49,12 +39,14 @@
             <td>{{this.supplierID}}</td>
             <td>{{this.supplierName}}</td>
             <td>{{this.location}}</td>
+            <td><button class="edit-button">Edit</button></td>
             <td><button onclick="deleteSupplier({{this.supplierID}})">Delete</button></td>
 
         </tr>
         {{/each}}
     </tbody>
 </table>
+<script src="./js/update_supplier.js"></script>
 <script src="./js/delete_supplier.js"></script>
 {{!-- Form to add a record to the table using standard HTML forms --}}
 <h2>Add new supplier</h2>
@@ -68,23 +60,4 @@
 
     <input type="submit">
 </form> 
-
-<h2>Updating Supplier</h2>
-<p>To update a specific suppliers detail, select from dropdown.</p>
-<form id="update-supplier-form-ajax">
-
-    <label for="input-supplierName">Supplier name: </label>
-    <select name="input-supplierName" id="mySelect">
-        <option value="test">Select a Supplier</option>
-        {{#each data}}
-        <option value="{{this.supplierID}}">{{this.supplerName}}</option>
-        {{/each}}
-    </select>
-
-    <label for="input-location">Location: </label>
-    <input type="text" name="input-location" id="input-location">
-    <input type="submit">
-
-</form>
-
-<script src="./js/update_supplier.js"></script>
+<script src="./js/add_supplier.js"></script>

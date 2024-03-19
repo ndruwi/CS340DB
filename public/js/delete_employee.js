@@ -1,3 +1,12 @@
+/*
+    Citation for the following function:
+    Date: 3/18/2024
+    Based on code from the OSU CS340 nodejs-starter-app GitHub page.
+    Changed the title and body contents to meet the project requirements.
+    Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+-->
+*/
+
 function deleteEmployee(employeeID) {
     // Put our data we want to send in a javascript object
     let data = {
@@ -32,7 +41,7 @@ function deleteRow(employeeID){
     for (let i = 0, row; row = table.rows[i]; i++) {
        //iterate through rows
        //rows would be accessed using the "row" variable assigned in the for loop
-       if (table.rows[i].getAttribute("data-value") == employeeID) {
+       if (table.rows[i].getAttribute("data-id") == employeeID) {
             table.deleteRow(i);
             break;
        }

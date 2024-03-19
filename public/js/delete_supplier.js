@@ -1,3 +1,14 @@
+/*
+    Citation for the following function:
+    Date: 3/18/2024
+    Based on code from the OSU CS340 nodejs-starter-app GitHub page.
+    Changed the title and body contents to meet the project requirements.
+    Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+-->
+*/
+
+
+
 function deleteSupplier(supplierID) {
     // Put our data we want to send in a javascript object
     let data = {

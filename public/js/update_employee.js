@@ -10,7 +10,7 @@
 
 // Event listener for Edit button
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('customers-table').addEventListener('click', function(e) {
+    document.getElementById('employees-table').addEventListener('click', function(e) {
         if (e.target && e.target.matches('.edit-button')) {
             let row = e.target.closest('tr');
             makeRowEditable(row);
@@ -33,11 +33,11 @@ function makeRowEditable(row) {
     // Temporarily store the original event listener
     editButton._originalEventListener = editButton.onclick;
     editButton.onclick = function() {
-        saveUpdatedCustomer(row);
+        saveUpdatedEmployee(row);
     };
 }
 
-function saveUpdatedCustomer(row) {
+function saveUpdatedEmployee(row) {
     let inputs = row.querySelectorAll('input');
     let updatedData = {
         id: row.getAttribute('data-id'),
@@ -45,11 +45,11 @@ function saveUpdatedCustomer(row) {
         lastName: inputs[1].value,
         email: inputs[2].value,
         phone: inputs[3].value,
-        address: inputs[4].value,
+        role: inputs[4].value,
     };
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open('PATCH', '/update-customer-ajax/' + encodeURIComponent(updatedData.id), true);
+    xhttp.open('PATCH', '/update-employee-ajax/' + encodeURIComponent(updatedData.id), true);
     xhttp.setRequestHeader('Content-Type', 'application/json');
 
     xhttp.onload = function() {
@@ -63,24 +63,24 @@ function saveUpdatedCustomer(row) {
                 makeRowEditable(row);
             };
         } else {
-            console.error('Error updating customer:', xhttp.responseText);
-            alert('Error updating customer: ' + xhttp.responseText);
+            console.error('Error updating employee:', xhttp.responseText);
+            alert('Error updating employee: ' + xhttp.responseText);
         }
     };
 
     xhttp.send(JSON.stringify(updatedData));
 }
 
-function updateRowDisplay(row, customer) {
+function updateRowDisplay(row, employee) {
     // Ensure the original number of cells is maintained after updating
     let cells = row.querySelectorAll('td:not(:first-child):not(:nth-last-child(-n+2))');
     
     // Update the text of each cell
-    cells[0].innerText = customer.firstName;
-    cells[1].innerText = customer.lastName;
-    cells[2].innerText = customer.email;
-    cells[3].innerText = customer.phone;
-    cells[4].innerText = customer.address;
+    cells[0].innerText = employee.firstName;
+    cells[1].innerText = employee.lastName;
+    cells[2].innerText = employee.email;
+    cells[3].innerText = employee.phone;
+    cells[4].innerText = employee.role;
 
     // Reset the button to 'Edit'
     let editButton = row.querySelector('.edit-button');
